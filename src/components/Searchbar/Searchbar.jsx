@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-// import { Search } from 'react-icons/md';
 import { MdSearch } from 'react-icons/md';
 import styles from './Searchbar.module.css';
 
