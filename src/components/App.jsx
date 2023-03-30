@@ -26,7 +26,7 @@ export class App extends Component {
   };
 
   componentDidUpdate(_, prevState) {
-    const { request, page } = this.state;
+    const { request, page, images } = this.state;
     const prevRequest = prevState.request;
     const prevPage = prevState.page;
     const nextRequest = request;
@@ -38,6 +38,10 @@ export class App extends Component {
 
     if (prevRequest !== nextRequest || prevPage !== nextPage) {
       this.getSearchImage();
+    }
+
+    if (page > 1 && prevState.images !== images) {
+      window.scrollBy(0, window.innerHeight - 164);
     }
   }
 
@@ -69,15 +73,6 @@ export class App extends Component {
           totalPages: Math.ceil(images.total / 12),
           status: Status.RESOLVED,
         }));
-
-        if (page > 1) {
-          setTimeout(() => {
-            window.scrollBy({
-              top: 500,
-              behavior: 'smooth',
-            });
-          }, 500);
-        }
       }
     } catch (error) {
       this.setState({ error, status: Status.REJECTED });
